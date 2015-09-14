@@ -449,10 +449,15 @@ var resizePizzas = function(size) {
   }
 
   // Iterates through pizza elements on the page and changes their widths
+
+  // Before the function generated a full list of .randomPizzaContainers and generated a new
+  // size fore each insnace. Since the size is constant across all .randomPizzaContainers, 
+  // this new function calculates the container size once and applys it across all instances.
   function changePizzaSizes(size) {
-    for (var i = 0; i < document.querySelectorAll(".randomPizzaContainer").length; i++) {
-      var dx = determineDx(document.querySelectorAll(".randomPizzaContainer")[i], size);
-      var newwidth = (document.querySelectorAll(".randomPizzaContainer")[i].offsetWidth + dx) + 'px';
+    containerQuery = document.querySelectorAll(".randomPizzaContainer");
+    var dx = determineDx(containerQuery[0], size);
+    var newwidth = (containerQuery[0].offsetWidth + dx) + 'px';
+    for (var i = 0; i < containerQuery.length; i++) {     
       document.querySelectorAll(".randomPizzaContainer")[i].style.width = newwidth;
     }
   }
@@ -502,7 +507,7 @@ function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
 
-  // Changed this block. Since all the phase calculations were done have a possible
+  // Changed this function. Since all the phase calculations were done have a possible
   // of 5 different values this was changed to generate all 5 values and reuse the
   // calculated values
   var items = document.querySelectorAll('.mover');

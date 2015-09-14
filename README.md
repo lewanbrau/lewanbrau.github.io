@@ -1,3 +1,34 @@
+To view this project, view the Github repo or the public hosted version
+
+Github Repo: https://github.com/lewanbrau/lewanbrau.github.io.git
+Hosted Web Version: http://lewanbrau.github.io/
+
+Optimizations made to index.html
+------------------------------------------------------
+-Image sizes and compression optimized
+-style.css moved inline
+-print.css loading async
+-index.html minified
+-Removed the call for a google font. Using browser standard sans serif
+
+
+Optimizations made to /views/js/main.js
+------------------------------------------------------
+-changePizzaSizes function
+	-Function previously calculated the width css value for each instance of the .randomPizzaContainer. This version does the calcualtion once and applies it across each instance
+
+-updatePositions function
+	-The old function provided had 5 possible values across all the items. This function stores an array with all 5 calculations and uses it across all the pizza items.
+
+-Number of moving pizzas generated
+	-The old function generated 200 pizzas in the background. Since a max value of 25 will show up in the view ever, 25 were used. 
+
+
+
+======================================================
+Instructions Provided
+======================================================
+
 ## Website Performance Optimization portfolio project
 
 Your challenge, if you wish to accept it (and we sure hope you will), is to optimize this online portfolio for speed! In particular, optimize the critical rendering path and make this page render as quickly as possible by applying the techniques you've picked up in the [Critical Rendering Path course](https://www.udacity.com/course/ud884).
