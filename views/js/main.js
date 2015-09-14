@@ -502,10 +502,20 @@ function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
 
+  // Changed this block. Since all the phase calculations were done have a possible
+  // of 5 different values this was changed to generate all 5 values and reuse the
+  // calculated values
   var items = document.querySelectorAll('.mover');
-  for (var i = 0; i < items.length; i++) {
-    var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
-    items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+  var scrollPos = document.body.scrollTop /1250;
+  var pizzaNum = items.length
+  var phaseValues = [];
+
+  for (var i = 0; i < 5; i++) {
+    phaseValues.push(Math.sin(scrollPos +i) *100);
+  }
+
+  for (var i = 0; i < pizzaNum; i++){
+    items[i].style.left = items[i].basicLeft + phaseValues[i%5] + 'px';
   }
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
@@ -522,10 +532,13 @@ function updatePositions() {
 window.addEventListener('scroll', updatePositions);
 
 // Generates the sliding pizzas when the page loads.
+
+//reduced the number of sliding pizza. This helped a TON
+
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
-  for (var i = 0; i < 200; i++) {
+  for (var i = 0; i < 25; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
