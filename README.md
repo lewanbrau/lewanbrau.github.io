@@ -21,7 +21,7 @@ Optimizations made to /views/js/main.js
 	-The old function provided had 5 possible values across all the items. This function stores an array with all 5 calculations and uses it across all the pizza items.
 
 -Number of moving pizzas generated
-	-The old function generated 200 pizzas in the background. Since a max value of 25 will show up in the view ever, 25 were used. 
+	-The old function generated 200 pizzas in the background. The correct number of pizzas will now be calculated based on the screen resolution. 
 
 
 

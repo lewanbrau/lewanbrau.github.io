@@ -424,7 +424,7 @@ var resizePizzas = function(size) {
   // Returns the size difference to change a pizza element from one size to another. Called by changePizzaSlices(size).
   function determineDx (elem, size) {
     var oldwidth = elem.offsetWidth;
-    var windowwidth = document.querySelector("#randomPizzas").offsetWidth;
+    var windowwidth = document.getElementById("randomPizzas").offsetWidth;
     var oldsize = oldwidth / windowwidth;
 
     // TODO: change to 3 sizes? no more xl?
@@ -454,7 +454,7 @@ var resizePizzas = function(size) {
   // size fore each insnace. Since the size is constant across all .randomPizzaContainers, 
   // this new function calculates the container size once and applys it across all instances.
   function changePizzaSizes(size) {
-    containerQuery = document.querySelectorAll(".randomPizzaContainer");
+    containerQuery = document.getElementsByClassName("randomPizzaContainer");
     var dx = determineDx(containerQuery[0], size);
     var newwidth = (containerQuery[0].offsetWidth + dx) + 'px';
     for (var i = 0; i < containerQuery.length; i++) {     
@@ -539,11 +539,13 @@ window.addEventListener('scroll', updatePositions);
 // Generates the sliding pizzas when the page loads.
 
 //reduced the number of sliding pizza. This helped a TON
+// Now we are calculating the number of rows and pizzas by client view width
 
 document.addEventListener('DOMContentLoaded', function() {
-  var cols = 8;
+  var cols = Math.ceil(document.documentElement.clientWidth / 256);
   var s = 256;
-  for (var i = 0; i < 25; i++) {
+  var pNum = (Math.ceil(document.documentElement.clientHeight / 100)) * cols
+  for (var i = 0; i < pNum; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
